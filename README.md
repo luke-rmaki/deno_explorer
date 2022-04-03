@@ -2,3 +2,10 @@
 
 A command line based file explorer that allows you to navigate the file system
 and return the path to a selected file
+
+```javascript
+import { open } from "https://deno.land/x/deno_explorer@v.0.0.1/mod.ts";
+
+const choice = await open();
+
+```
