@@ -24,4 +24,3 @@ export default async function open() {
   return fileChoice;
 }
 
-open();
