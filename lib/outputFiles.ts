@@ -1,21 +1,29 @@
 import { choice } from "./utils/choice.ts";
 
-export async function outputFiles(dir: string) {
+export async function outputFiles(dir: string, showDotFiles: boolean) {
   const contents = Deno.readDir(dir);
-  const files = [];
-  const folders = [];
+  const items = [];
   console.clear();
   for await (const item of contents) {
     if (item.isDirectory) {
-      folders.push(item.name);
+      items.push({ name: item.name, type: "dir" });
     } else {
-      files.push(item.name);
+      items.push({ name: item.name, type: "file" });
     }
   }
+
+  if (!showDotFiles) {
+    const filteredItems = items.filter((item) => item.name[0] !== ".");
+    const userChoice = await choice(
+      filteredItems,
+      "Select a folder or file",
+    );
+    return userChoice;
+  }
   const userChoice = await choice(
-    folders,
-    files,
+    items,
     "Select a folder or file",
   );
+
   return userChoice;
 }

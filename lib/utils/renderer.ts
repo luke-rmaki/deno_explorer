@@ -6,7 +6,7 @@ export function renderHeading(type: "main" | "sub", text: string) {
     console.log(colors.bold.underline.magenta.bgWhite(text));
     console.log(colors.bold.magenta("------------------------"));
   } else {
-    console.log(colors.blue(text));
+    console.log(colors.underline.blue(text));
     console.log(colors.blue("------------------------"));
   }
 }

@@ -1,17 +1,21 @@
 import { Select } from "https://deno.land/x/cliffy/prompt/mod.ts";
+import { colors } from "https://deno.land/x/cliffy/ansi/colors.ts";
 
 export async function choice(
-  folders: string[],
-  files: string[],
+  items: { name: string; type: string }[],
   message: string,
 ) {
   const options = [
     { name: "Back...", value: "back" },
-    { name: "Folders", disabled: true, value: "folders" },
-    ...folders,
-    Select.separator("--------"),
-    { name: "Files", disabled: true, value: "files" },
-    ...files,
+    ...items.map((item) => {
+      if (item.type === "dir") {
+        return {
+          value: item.name,
+          name: colors.bold.brightCyan(`/${item.name}`),
+        };
+      }
+      return { value: item.name, name: colors.white(item.name) };
+    }),
   ];
   const result = await Select.prompt({
     message,
