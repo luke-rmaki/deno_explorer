@@ -1,5 +1,5 @@
-import { Select } from "https://deno.land/x/cliffy/prompt/mod.ts";
-import { colors } from "https://deno.land/x/cliffy/ansi/colors.ts";
+import { Select } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
+import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/colors.ts";
 
 export async function choice(
   items: { name: string; type: string }[],

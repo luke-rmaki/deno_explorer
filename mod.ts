@@ -31,3 +31,4 @@ export default async function open(showDotFiles = false) {
   return fileChoice;
 }
 
+open()
